@@ -41,22 +41,4 @@ define Package/nodogsplash/compile
 	$(MAKE) -C $(PKG_BUILD_DIR) all
 endef
 
-define Package/nodogsplash/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/nodogsplash $(1)/usr/bin/
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/ndsctl $(1)/usr/bin/
-
-	$(INSTALL_DIR) $(1)/etc/nodogsplash/htdocs/images
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/usr/lib/nodogsplash
-	$(CP) $(PKG_INSTALL_DIR)/etc/nodogsplash/htdocs/images/* $(1)/etc/nodogsplash/htdocs/images/
-	$(CP) $(PKG_INSTALL_DIR)/etc/nodogsplash/htdocs/* $(1)/etc/nodogsplash/htdocs/
-	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/nodogsplash/nodogsplash.conf $(1)/etc/nodogsplash/
-	$(INSTALL_CONF)./files/nodogsplash.config $(1)/etc/config/nodogsplash
-	$(INSTALL_BIN)./files/nodogsplash.init $(1)/etc/init.d/nodogsplash
-	$(INSTALL_BIN)./files/nodogsplash.uci-defaults $(1)/etc/uci-defaults/99-nodogsplash
-endef
-
 $(eval $(call BuildPackage,nodogsplash))
