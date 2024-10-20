@@ -1,6 +1,6 @@
-include $(INCLUDE_DIR)/package.mk
+include $(TOPDIR)/rules.mk
 
-PKG_NAME:=Tollbooth
+PKG_NAME:=TollBooth
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
@@ -10,6 +10,8 @@ PKG_SOURCE_VERSION:=main
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+
+include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
