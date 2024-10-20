@@ -26,12 +26,18 @@ define Package/$(PKG_NAME)/description
 endef
 
 define Build/Prepare
-	rm -rf $(PKG_BUILD_DIR)
-	mkdir -p $(PKG_BUILD_DIR)
-	git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR) --branch $(PKG_SOURCE_VERSION) --single-branch
-	(cd $(PKG_BUILD_DIR); git submodule update --init --recursive)
-	[ -d "$(PKG_BUILD_DIR)/nostr/c" ] && $(CP) $(PKG_BUILD_DIR)/nostr/c/* $(PKG_BUILD_DIR)/ || (echo "The expected subdirectory does not exist." && exit 1)
-	[ -f "$(PKG_BUILD_DIR)/generate_config_h.sh" ] && (cd $(PKG_BUILD_DIR); ./generate_config_h.sh)
+    @echo "Loggg: Starting Build/Prepare"
+    rm -rf $(PKG_BUILD_DIR)
+    mkdir -p $(PKG_BUILD_DIR)
+    @echo "Loggg: Cloning repository"
+    git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR) --branch $(PKG_SOURCE_VERSION) --single-branch
+    @echo "Loggg: Updating submodules"
+    (cd $(PKG_BUILD_DIR); git submodule update --init --recursive)
+    @echo "Loggg: Copying files"
+    [ -d "$(PKG_BUILD_DIR)/nostr/c" ] && $(CP) $(PKG_BUILD_DIR)/nostr/c/* $(PKG_BUILD_DIR)/ || (echo "The expected subdirectory does not exist." && exit 1)
+    @echo "Loggg: Running generate_config_h.sh"
+    [ -f "$(PKG_BUILD_DIR)/generate_config_h.sh" ] && (cd $(PKG_BUILD_DIR); ./generate_config_h.sh)
+    @echo "Loggg: Build/Prepare complete"
 endef
 
 # define Build/Prepare
