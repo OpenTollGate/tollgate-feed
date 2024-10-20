@@ -92,15 +92,13 @@ exit 0
 endef
 
 define Package/$(PKG_NAME)/prerm
+    uci delete uhttpd.main.lua_prefix
+    uci delete uhttpd.main.lua_handler
 
-uci delete uhttpd.main.lua_prefix
-uci delete uhttpd.main.lua_handler
+    uci commit uhttpd
+    /etc/init.d/uhttpd restart
 
-uci commit uhttpd
-
-/etc/init.d/uhttpd restart
-
-exit 0
+    exit 0
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
