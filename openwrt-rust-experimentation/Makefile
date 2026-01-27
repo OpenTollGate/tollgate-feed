@@ -10,7 +10,9 @@ PKG_SOURCE_VERSION:=main
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/openwrt-rust-experimentation
+include $(INCLUDE_DIR)/rust.mk
+
+define Package/openwrt-rust-experimentation/rust
   SECTION:=base
   CATEGORY:=Network
   TITLE:=OpenWrt Rust Experimentation
@@ -21,15 +23,9 @@ define Package/openwrt-rust-experimentation/description
   An experimental Rust package for OpenWrt.
 endef
 
-define Build/Compile
-	# This is a placeholder. The actual build command for a Rust project is needed here.
-	# For example, it might look something like this:
-	# (cd $(PKG_BUILD_DIR); cargo build --release)
+define Cargo/Configure
+  --no-default-features
 endef
 
-define Package/openwrt-rust-experimentation/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/release/$(PKG_NAME) $(1)/usr/bin/
-endef
 
-$(eval $(call BuildPackage,openwrt-rust-experimentation))
+$(eval $(call RustPackage,openwrt-rust-experimentation))
