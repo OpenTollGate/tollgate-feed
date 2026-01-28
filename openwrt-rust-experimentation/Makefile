@@ -12,7 +12,7 @@ include $(INCLUDE_DIR)/package.mk
 
 include $(INCLUDE_DIR)/rust.mk
 
-define Package/openwrt-rust-experimentation/rust
+define Package/openwrt-rust-experimentation
   SECTION:=base
   CATEGORY:=Network
   TITLE:=OpenWrt Rust Experimentation
