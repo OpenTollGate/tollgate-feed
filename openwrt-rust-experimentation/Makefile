@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/c03rad0r/openwrt-rust-experimentation.git
-PKG_SOURCE_VERSION:=main
+PKG_SOURCE_VERSION:=try-manual-build-instructions
 
 include $(INCLUDE_DIR)/package.mk
 
