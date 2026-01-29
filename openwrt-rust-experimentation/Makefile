@@ -17,6 +17,7 @@ define Package/openwrt-rust-experimentation
   CATEGORY:=Network
   TITLE:=OpenWrt Rust Experimentation
   MAINTAINER:=c03rad0r
+  DEPENDS:=+rust/host
 endef
 
 define Package/openwrt-rust-experimentation/description
